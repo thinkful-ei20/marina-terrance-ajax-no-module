@@ -226,8 +226,15 @@ const fetchVideos = function(searchTerm, callback) {
 // TEST IT! Grab an example API response and send it into the function - make sure
 // you get back the object you want.
 const decorateResponse = function(response) {
-
+	return response.items.map(item => {
+		const id = item.id.videoId;
+		const title = item.snippet.title;
+		const thumbnail = item.snippet.thumbnails.default.url;
+		return {id, title, thumbnail};
+	});
 };
+
+console.log(decorateResponse(mockData));
 
 // TASK:
 // 1. Create a `generateVideoItemHtml` function that receives the decorated object
