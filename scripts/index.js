@@ -29,7 +29,13 @@ const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
 // 3. Make a getJSON call using the query object and sending the provided callback in as the last argument
 // TEST IT! Execute this function and console log the results inside the callback.
 const fetchVideos = function(searchTerm, callback) {
-
+	const query = {
+		q: searchTerm,
+    part: 'snippet',
+    key: API_KEY,
+    type: 'video'
+	};
+	console.log($.getJSON(BASE_URL, query, callback));
 };
 
 // TASK:
@@ -87,6 +93,8 @@ const handleFormSubmit = function() {
 		const search = $input.val();
 		console.log(search);
 		$input.val('');
+		// May need to change line 90
+		fetchVideos(search, decorateResponse);
 	});
 };
 
