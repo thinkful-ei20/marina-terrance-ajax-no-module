@@ -234,15 +234,23 @@ const decorateResponse = function(response) {
 	});
 };
 
-console.log(decorateResponse(mockData));
+const myArr = decorateResponse(mockData);
 
 // TASK:
 // 1. Create a `generateVideoItemHtml` function that receives the decorated object
 // 2. Using the object, return an HTML string containing all the expected data
 // TEST IT!
 const generateVideoItemHtml = function(video) {
-
+	return `
+		<li data-videoId="${video.id}">
+			<a href="#" target="_blank">
+          <img src="${video.thumbnail}" alt="need_img_name">
+      </a>
+      <p>${video.title}</p>
+		</li>
+	`;
 };
+console.log(generateVideoItemHtml(myArr[0]));
 
 // TASK:
 // 1. Create a `addVideosToStore` function that receives an array of decorated video 
