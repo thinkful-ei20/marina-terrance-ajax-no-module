@@ -241,6 +241,7 @@ const myArr = decorateResponse(mockData);
 // 2. Using the object, return an HTML string containing all the expected data
 // TEST IT!
 const generateVideoItemHtml = function(video) {
+  console.log(video);
 	return `
 		<li data-videoId="${video.id}">
 			<a href="#" target="_blank">
@@ -250,14 +251,17 @@ const generateVideoItemHtml = function(video) {
 		</li>
 	`;
 };
-console.log(generateVideoItemHtml(myArr[0]));
+// console.log(generateVideoItemHtml(myArr[0]));
 
 // TASK:
 // 1. Create a `addVideosToStore` function that receives an array of decorated video 
 // objects and sets the array as the value held in store.items
 // TEST IT!
 const addVideosToStore = function(videos) {
-	store.videos.push(videos);
+  videos.map(el => {
+    store.videos.push(el);
+  });
+	// store.videos.push(videos);
 };
 
 addVideosToStore(myArr);
@@ -269,8 +273,14 @@ console.log(store);
 // 3. Add your array of DOM elements to the appropriate DOM element
 // TEST IT!
 const render = function() {
-
+  const videoStrArr = store.videos.map(video => {
+    return generateVideoItemHtml(video);
+  });
+  const listItems = videoStrArr.join('');
+  $('.results').html(listItems);
 };
+
+render();
 
 // TASK:
 // 1. Create a `handleFormSubmit` function that adds an event listener to the form
