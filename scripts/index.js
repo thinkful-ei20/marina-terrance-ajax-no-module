@@ -257,8 +257,11 @@ console.log(generateVideoItemHtml(myArr[0]));
 // objects and sets the array as the value held in store.items
 // TEST IT!
 const addVideosToStore = function(videos) {
-
+	store.videos.push(videos);
 };
+
+addVideosToStore(myArr);
+console.log(store);
 
 // TASK:
 // 1. Create a `render` function
