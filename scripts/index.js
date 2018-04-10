@@ -57,7 +57,6 @@ const decorateResponse = function(response) {
     // we would want to call Video.create( here?
     return {id, title, thumbnail};
 	});
-	addVideosToStore(myArr);
 };
 
 // TASK:
@@ -85,7 +84,6 @@ const addVideosToStore = function(videos) {
   videos.map(el => {
     store.videos.push(el);
   });
-  render();
 };
 
 // TASK:
@@ -120,7 +118,11 @@ const handleFormSubmit = function() {
 		const search = $input.val();
 		console.log(search);
 		$input.val('');
-		fetchVideos(search, decorateResponse);
+		fetchVideos(search, (data) => {
+			let returned = decorateResponse(data);
+			addVideosToStore(returned);
+			render();
+		});
 	});
 };
 
